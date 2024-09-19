@@ -22,16 +22,14 @@ Docker image in [dockerhub](https://hub.docker.com/r/lalvarezmunoz/vcf-snpeff-fo
 
 ## Usage
 
-The standard CLI code is:
+Standard CLI code:
 
 ```bash
 python3 renamer.py <ACCESSION_NUMBER> <VCF_FILE>
 ```
 
 
-## Examples
-
-Simple:
+Example:
 
 ```bash
 python3 renamer.py GCA_000092025.1 test.vcf
