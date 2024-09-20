@@ -63,7 +63,7 @@ if __name__ == "__main__":
     accession_number = sys.argv[1]
     vcf_file = sys.argv[2]
     output_folder = os.path.dirname(vcf_file)
-    report_file = output_folder+"/assembly_report.txt"
+    report_file = os.path.join(output_folder, "assembly_report.txt")
     report_downloader(accession_number, NCBI_URL, report_file)
     conversion_table = parse_assembly_report(report_file)
     rename_vcf(conversion_table, vcf_file)

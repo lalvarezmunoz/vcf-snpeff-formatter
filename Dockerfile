@@ -1,3 +1,5 @@
-FROM python:3.11.10-slim-bullseye
+FROM python:3.12.6
 RUN pip3 install pandas==2.2.2
-COPY renamer.py .
+RUN mkdir -p renamer
+COPY renamer.py /renamer
+WORKDIR /renamer
