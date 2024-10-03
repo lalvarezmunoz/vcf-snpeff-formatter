@@ -37,19 +37,21 @@ def parse_assembly_report(r_file):
                 new_string += line
     print(new_string)
 
-    #convert string for pandas
+#convert string for pandas
     string_data = StringIO(new_string)
-    df = pd.read_csv(string_data, header = None, sep = "\t", usecols = [0,4,6], names = ["Sequence-Name","GenBank-Accn","RefSeq-Accn"])
+    df = pd.read_csv(string_data, header = None, sep = "\t", usecols = [2,4,6], names = ["Assigned-Molecule","GenBank-Accn","RefSeq-Accn"])
+    df = df.replace("na", "Chromosome")
+    print(df)
     conversion_dict = {}
     for index,row in df.iterrows():
-        conversion_dict[row["GenBank-Accn"]] = row["Sequence-Name"]
-        conversion_dict[row["RefSeq-Accn"]] = row["Sequence-Name"]
+        conversion_dict[row["GenBank-Accn"]] = row["Assigned-Molecule"]
+        conversion_dict[row["RefSeq-Accn"]] = row["Assigned-Molecule"]
     print(conversion_dict)
     return(conversion_dict)
 
 #rename vcf file
 def rename_vcf(conversion, vcf):
-    """substitutes the accession numbers in the vcf file for the Sequence-Name used by SnpEff"""
+    """substitutes the accession numbers in the vcf file for the Assigned-Molecule used by SnpEff"""
     with open(vcf, encoding = "utf-8") as infile:
         data = infile.read()
         for k,v in conversion.items():
