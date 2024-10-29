@@ -44,8 +44,8 @@ def parse_assembly_report(r_file):
     print(df)
     conversion_dict = {}
     for index,row in df.iterrows():
-        conversion_dict[row["GenBank-Accn"]] = row["Assigned-Molecule"]
         conversion_dict[row["RefSeq-Accn"]] = row["Assigned-Molecule"]
+        conversion_dict[row["GenBank-Accn"]] = row["Assigned-Molecule"]
     print(conversion_dict)
     return(conversion_dict)
 
